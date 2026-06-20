@@ -1,0 +1,6 @@
+ultralytics
+opencv-python-headless
+boto3
+yt-dlp
+fastapi
+uvicorn
