@@ -25,7 +25,11 @@ def in_zone(cx, cy):
     return x1 <= cx <= x2 and y1 <= cy <= y2
 
 def get_stream_url(youtube_url: str) -> str:
-    cmd = ["yt-dlp", "--cookies", "cookies.txt", "-g", "--format", "best[ext=mp4]/best", youtube_url]
+    cmd = [
+        "yt-dlp", "--cookies", "cookies.txt",
+        "--extractor-args", "youtube:player_client=web",
+        "-g", "--format", "best[ext=mp4]/best", youtube_url
+    ]
     result = subprocess.run(cmd, capture_output=True, text=True)
     if result.returncode != 0:
         raise RuntimeError(f"yt-dlp error:\n{result.stderr}")
